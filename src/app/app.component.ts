@@ -1,18 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { Plugins } from '@capacitor/core';
+const { App } = Plugins;
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+export class AppComponent implements OnInit {
+  logopath: string = "/assets/logo.png";
+
+  t: any;
+
+  constructor() {
+
+  }
+
+  ngOnInit() {
+    App.addListener('appStateChange', ({ isActive }) => {
+      if (!isActive) {
+        this.t = setTimeout(() => {
+          App.exitApp();
+        }, 60000);
+      }
+      else {
+        clearTimeout(this.t);
+      }
+    });
+  }
+
+
 }

@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button class="text-success"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="text-success">Rules of the Game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class="text-success">Rules of the Game</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <h1>
+    &nbsp;
+  </h1>
+
+  <div class="container">
+    <!-- List of Text Items -->
+    <ion-list>
+      <ion-item *ngFor="let point of rulepoints">
+        <ion-label color="danger" class="ion-text-wrap text-justify">
+          {{ point.Point }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+  </div>
+
+  <div class="container" style="min-height: 70px;">
+  </div>
+
+</ion-content>

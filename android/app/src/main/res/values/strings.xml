@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Offline Secret Manager</string>
+    <string name="title_activity_main">Offline Secret Manager</string>
+    <string name="package_name">in.co.rwork.manager.secret.offline</string>
+    <string name="custom_url_scheme">in.co.rwork.manager.secret.offline</string>
+</resources>
