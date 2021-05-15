@@ -10,6 +10,8 @@ export class AboutPage implements OnInit {
 
   appversion: string = "";
 
+  sourcecode: string = "";
+
   aboutpoints: any = null;
 
   constructor() { 
@@ -22,13 +24,13 @@ export class AboutPage implements OnInit {
       {"Point": "Sensitive part of the data is stored in an encrypted form."},
       {"Point": "Apart from the Ionic platform and Angular framework, other main libraries/ tools used in this app are:- (1) JQuery (2) Bootstrap (3) crypto-js (4) js-sha512 (5) ngx-papaparse.js."},
       {"Point": "User is solely responsible for any kind of loss or damage, arising directly or indirectly by using this app."},
-      {"Point": "For complete detail, also refer the Rules section of the app."},
-      {"Point": "Source code available at https://github.com/rk06gh/SecretsManager."}
+      {"Point": "For complete detail, also refer the Rules section of the app."}
     ];
   }
 
   ngOnInit() {
     this.appversion = environment.appVersion;
+    this.sourcecode = environment.sourceCodeUrl;
   }
 
 }
