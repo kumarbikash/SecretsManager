@@ -164,13 +164,11 @@ export class HomePage implements OnInit {
 
   checkLogin(password: string) {
     this.getservice.checkLoginDetails(password).then(data => {
-      if (data) {
-        // all ok, nothing to do
-      }
-      else {
-        // incorrect input, repeat asking
-        this.presentAlertLoginCheck("Warning", "", "Incorrect input !", "text-danger", true)
-      }
+      // all ok, nothing to do
+      // continue as usual, with the app
+    }, response => {
+      // incorrect input, repeat asking
+      this.presentAlertLoginCheck("Warning", "", "Incorrect input !", "text-danger", true)
     })
   }
 

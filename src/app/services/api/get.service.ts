@@ -75,7 +75,7 @@ export class GetService {
     );
   }
 
-  async checkLoginDetails(password: string) {
+  async checkLoginDetails(password: string): Promise<boolean> {
     return await new Promise<boolean>(async (resolve, reject) => {
       const { value } = await Storage.get({ key: 'login' });
       if (value == sha512(password + "5ekr|tS@lt")) {
@@ -84,7 +84,7 @@ export class GetService {
         resolve(true);
       }
       else {
-        reject(false);
+        reject("Incorrect Input");
       }
     });
   }
