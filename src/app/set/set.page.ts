@@ -21,7 +21,7 @@ export class SetPage implements OnInit {
   p_edit: Password = new Password();
   type_edit: string = "";
 
-  types: {} = [
+  types: any = [
     {"name": "Password", "value": "pw"}, 
     {"name": "Card", "value": "cd"}
   ];

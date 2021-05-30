@@ -18,7 +18,7 @@
     <form [formGroup]="filterForm">
 
       <div class="form-group">
-        <select formControlName="type" class="form-control" id="type" required (change)="onSubmit($event.target.value)">
+        <select formControlName="type" class="form-control" id="type" required (change)="onSubmit()">
           <option value="">Choose Type</option>
           <option *ngFor="let t of types" [value]="t.value">{{t.name}}</option>
         </select>
@@ -98,7 +98,7 @@
               :
             </ion-col>
             <ion-col size="4">
-              <ion-icon ios="pencil" md="pencil" (click)="editRecord(record.i, record.t)" class="text-primary"
+              <ion-icon ios="pencil" md="pencil" (click)="editRecord(record.i)" class="text-primary"
                 title="Edit"></ion-icon>
             </ion-col>
             <ion-col size="4">

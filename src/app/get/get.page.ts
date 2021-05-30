@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { GetService } from 'src/app/services/api/get.service';
 import { DelService } from 'src/app/services/api/del.service';
+import { Record } from 'src/app/models/record';
 
 import { LoadingController } from '@ionic/angular';
 
@@ -33,8 +34,8 @@ export class GetPage implements OnInit {
     private alertController: AlertController
   ) { }
 
-  records: string[] = [];
-  searchrecords: string[] = [];
+  records: Record[] = [];
+  searchrecords: Record[] = [];
   key_del: string = "";
   type_filter: string = "";
   lbl_pvalue: string = "";
@@ -42,7 +43,7 @@ export class GetPage implements OnInit {
 
   @ViewChild('search', { static: true }) input: ElementRef;
 
-  types: {} = [
+  types: any = [
     { "name": "Password", "value": "pw" },
     { "name": "Card", "value": "cd" }
   ];
@@ -66,8 +67,8 @@ export class GetPage implements OnInit {
   private loadData() {
     this.presentLoading().then(() => {
       this.getservice.getAllRecords(this.type_filter).then(value => {
-        this.records = value.filter(Boolean);
-        this.searchrecords = value.filter(Boolean);
+        this.records = <Record[]><unknown> value.filter(Boolean);
+        this.searchrecords = <Record[]><unknown> value.filter(Boolean);
         this.sortData();
       }).then(() => {
         this.dismissLoading();
@@ -80,7 +81,7 @@ export class GetPage implements OnInit {
   }
 
   private sortData() {
-    this.sort_by_key(this.searchrecords, "n");
+    this.sort_by_key(<string[]><unknown> this.searchrecords, "n");
   }
 
   private sort_by_key(array: string[], key: string) {
