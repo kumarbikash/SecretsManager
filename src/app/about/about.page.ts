@@ -28,9 +28,12 @@ export class AboutPage implements OnInit {
     ];
   }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.appversion = environment.appVersion;
     this.sourcecode = environment.sourceCodeUrl;
+  }
+
+  ngOnInit() {
   }
 
 }
