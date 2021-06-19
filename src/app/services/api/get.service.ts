@@ -107,4 +107,12 @@ export class GetService {
     return this.encKey;
   }
 
+  async encString(str: string): Promise<string> {
+    return await CryptoJS.AES.encrypt(str, this.getEncKey()).toString();
+  }
+
+  async decString(str: string): Promise<string> {
+    return await CryptoJS.AES.decrypt(str, this.getEncKey()).toString(CryptoJS.enc.Utf8);
+  }
+
 }

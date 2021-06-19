@@ -6,6 +6,8 @@ import { Password } from '../models/password.model';
 
 import { SetService } from 'src/app/services/api/set.service';
 
+import { GetService } from 'src/app/services/api/get.service';
+
 @Component({
   selector: 'app-restore',
   templateUrl: './restore.page.html',
@@ -18,10 +20,12 @@ export class RestorePage implements OnInit {
 
   constructor(
     private setservice: SetService,
+    private getservice: GetService,
     private alertController: AlertController
   ) { 
     this.restorepoints = [
       {"Point": "Click the button to choose the backup file. A valid backup file is required."},
+      {"Point": "Your current Access Password should be the same, which was used while taking the backup. Later on, you can change the Access Password as desired."},
       {"Point": "All the records in the file would be restored."}
     ];
   }
@@ -37,8 +41,10 @@ export class RestorePage implements OnInit {
       let fileReader = new FileReader();
       fileReader.onload =  (fileLoadedEvent) => {
         data = JSON.parse(fileLoadedEvent.target.result.toString());
-        data.forEach(element => {
-          this.pushToStorage(element);
+        this.getservice.decString(data).then((res:any) => {
+          JSON.parse(res).forEach(element => {
+            this.pushToStorage(element);
+          });
         });
       };
       fileReader.onloadend = () => {

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appVersion: "1.3",
+  appVersion: "1.5",
   sourceCodeUrl: "https://github.com/rk06gh/SecretsManager"
 };
 

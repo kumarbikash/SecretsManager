@@ -15,7 +15,7 @@ const { Filesystem } = Plugins;
 })
 export class BackupPage implements OnInit {
 
-  records: string[] = [];
+  records: any = [];
   fileWriteResult: string = "";
   backuppoints: any = null;
 
@@ -25,10 +25,9 @@ export class BackupPage implements OnInit {
   ) { 
     this.backuppoints = [
       {"Point": "Backup file will include all the secrets you have saved. It will be saved to Documents directory under your device memory."},
-      {"Point": "It will be plain text file and not encrypted."},
-      {"Point": "Take appropriate measures to protect your stored sensitive data, while handling this backup file."},
-      {"Point": "Content of generated file will include additional escapace characters at few places."},
-      {"Point": "If for any reason, file is not generated, you may copy the content below (button \"Copy to Clipboard\") and paste in any text file and save it. Follow all safety measures to protect the sensitive data (in clipboard as well as the saved file)."}
+      {"Point": "It will be encrypted using your existing Access Password. Same Access Password should exist, during restore operation."},
+      {"Point": "Despite of being encrypted, take appropriate measures to protect your stored sensitive data, while handling this backup file."},
+      {"Point": "If for any reason, file is not generated, you may copy the content below (button \"Copy to Clipboard\") and paste in any text file and save it. The copied text will also be encrypted using your existing Access Password and will not be human readable. Follow all safety measures to protect the sensitive data (in clipboard as well as the saved file)."}
     ];
   }
 
@@ -40,8 +39,10 @@ export class BackupPage implements OnInit {
   }
 
   private loadData() {
-    this.getservice.getAllRecords().then(value => {
-      this.records = value;
+    this.getservice.getAllRecords().then(async (value) => {
+      this.getservice.encString(JSON.stringify(value)).then(result => {
+        this.records = result;
+      });
     });
   }
 
